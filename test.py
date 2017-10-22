@@ -2,6 +2,9 @@ import requests
 import keys
 import time
 
+def misspell_text(original, misspelled):
+    pass
+
 def correct_text(original, corrections):
     if len(corrections['flaggedTokens']) == 0:
         return original.replace('\n', '')
@@ -20,9 +23,9 @@ def main():
     fname = input('provide file for testing data\n')
     try: 
         with open(fname) as fileobj:
-            time.sleep(0.5)
             print('correcting', fname)
             for line in fileobj:
+                time.sleep(1)
                 if len(line) < 3:
                     continue
                 url = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text=' + line
