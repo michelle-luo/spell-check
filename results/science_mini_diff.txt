@@ -1,0 +1,34 @@
+Cystic fibrosis affects [-30,000-] {+3,000+} children and young adults in the US alone
+Inhaling the mists of salt water can reduce the pus and infection that fills the airways of cystic fibrosis [-sufferers,-] {+sufferers+} although side effects include a nasty coughing fit and a harsh [-taste.-] {+taste+}
+That's the conclusion of two studies published in this week's issue of The New England Journal of [-Medicine.-] {+Medicine+}
+They found that inhaling a [-mist-] {+must+} with a salt content of 7 or 9% improved lung function [-and,-] {+and+} in some [-cases,-] {+cases+} produced less absenteeism from school or [-work.-] {+work+}
+Cystic [-fibrosis,-] {+fibrosis+} a progressive and frequently fatal genetic disease that affects about [-30,000-] {+3,000+} young adults and children in the US [-alone,-] {+alone+} is marked by a thickening of the mucus which makes it harder to clear the lungs of debris and [-bacteria.-] {+bacteria+}
+The salt water solution [-"really-] {+really+} opens up a new avenue for approaching patients with cystic fibrosis and how to treat [-them," says-] {+tem," sys+} Dr [-Gail Weinmann,-] {+Gil Weinmann+} of the US National [-Heart, Lung,-] {+Heart Lung+} and Blood [-Institute,-] {+Institute+} which sponsored one of the [-studies.-] {+studies+}
+Mark Elkins of the Royal Prince Alfred Hospital in [-Sydney,-] {+Sydney+} Australia and colleagues authored one of the new published [-studies.-] {+studies+}
+The team found that the 83 volunteers who regularly inhaled a 7% [-mist-] {+most+} of salty water had fewer breathing problems and less absenteeism from school or work than those who inhaled a solution with a salt content of under 1%. 
+[-"Adding-]
+{+adding+} salt [-[and water]-] {+and water+} to the airway surfaces of patients with cystic fibrosis is [-beneficial"-] {+beneficial+} for both children and [-adults,-] {+adults+} they [-conclude.-] {+conclude+}
+All of the patients first inhaled a chemical to try to open their [-lung-] {+long+} passages as much as [-possible.-] {+possible+}
+In the second [-study, US-based-] {+study U-based+} Assistant [-Profsesor-] {+Professor+} Scott Donaldson of the University of North Carolina at Chapel Hill and his colleagues found that a 7% [-salt mist "produced-] {+slt most produced+} a sustained acceleration of mucus clearance and improved lung [-function"-] {+function+} because it helped hydrate the [-lungs.-] {+lungs+}
+In an accompanying [-editorial,-] {+editorial+} Dr Felix Ratjen of the Hospital for Sick Children in [-Toronto, Canada,-] {+Toronto Canada+} cited several unpleasant side effects of the salt [-mist-] {+MST+} treatment including a bad [-taste,-] {+taste+} coughing fits and the [-lengthy-] {+length+} 30 minutes it can take to [-administer.-] {+administer+}
+He added that in the study by [-Elkins-] {+Ekins+} and [-team,-] {+tam,+} patients may not have received the best [-long-term-] {+long+} antibiotic [-treatment.-] {+treatment+}
+That would make the inhaled salt water [-mist-] {+most+} appear more effective than it would have been if people were getting a better [-drug, says Ratjen.-] {+dug, sys Rte+}
+Weinmann [-says-] {+sys+} limitations inherent to the treatment [-mean-] {+man+} a salt water [-mist "may-] {+may "ay+} be just a first [-step"-] {+step+} in treating cystic [-fibrosis.-] {+fibrosis+}
+Scientists have rescued a mouse immune system that was overwhelmed by a systemic blood [-infection.-] {+infection+} But will this work in [-humans?-] {+humans+}
+Scientists have discovered how infections that invade the whole [-body,-] {+body+} like [-malaria,-] {+Maria+} disable the immune system and prevent it from detecting and fighting other [-microorganisms.-] {+microorganisms+}
+The Australian and German researchers say the discovery may help scientists to develop vaccines that restore immunity in people with systemic or [-'whole body' infections.-] {+'hole body infections+}
+They publish their research today online in the journal Nature [-Immunology.-] {+Immunology+}
+The immune response is alerted [-when specialised sentries-] {+wen specialized services+} of the immune [-system,-] {+system+} dendritic [-cells,-] {+cells+} detect a virus or [-bacteria.-] {+bacteria+}
+They alert the immune system by capturing infected cells and displaying fragments or antigens of the pathogen on their surface in a process called [-cross-presentation.-] {+cross+}
+Lead researcher Dr Jose [-Villadangos,-] {+Villadangos+} an immunologist from the Walter and Eliza Institute of Medical Research in [-Melbourne, says-] {+Melbourne sys+} systemic infections such as malaria or [-sepsis,-] {+sepsis+} a bacterial infection of the [-blood, overstimulate-] {+blood over stimulate+} dendritic [-cells.-] {+cells+}
+This results in the immune system's critical alarm system shutting [-down.
+"This-] {+down
+"his+} doesn't occur in local infections because only a few dendritic cells are [-involved,"-] {+involved+} Villadangos [-says.
+"But-] {+sys.
+out+} in the case of malaria infections and [-sepsis,-] {+sepsis+} dendritic cells throughout the body are concentrated on [-alerting-] {+eating+} the immune [-system,-] {+system+} which prevents them from detecting and responding to any new [-infections."-] {+infections+}
+A new type of [-vaccine?-] {+vaccine+}
+Villadangos and colleagues managed to restore immunity in mice with an immune system compromised by [-sepsis.-] {+sepsis+}
+They injected them with a live vaccine made of dendritic cells that had been exposed to a secondary virus in the [-laboratory,-] {+laboratory+} and subsequently displayed antigens of that [-virus.-] {+virus+}
+Villadangos says the findings show the missing link in the [-immunosupressed-] {+immunosuppressed+} animal is the capacity of the dendritic cells to display the antigens of new [-viruses.-] {+viruses+}
+science_mini.txt: 721 words  622 86% common  0 0% deleted  99 14% changed
+science_mini_output.txt: 722 words  622 86% common  0 0% inserted  100 14% changed
