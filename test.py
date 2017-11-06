@@ -54,11 +54,14 @@ def main():
         print(USAGE)
         return
     fname = sys.argv[1]
-    try: 
+    # out_fname = ''
+    # if '.' in fname:
+    #     out_fname = sys.argv[1].rsplit('.', 1)[0] + '_output.' + sys.argv[1].rsplit('.', 1)[1]
+    # else:
+    #     out_fname = fname + '_output'
+    try:
         with open(fname) as fileobj:
             for line in fileobj:
-                # one request to msft per second :(
-                time.sleep(1.25)
                 line = line.lstrip().rstrip()
                 line = misspell_text(line)
                 line = spell_check(line)
