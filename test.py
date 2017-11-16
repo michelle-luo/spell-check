@@ -11,6 +11,7 @@ def correct_text(original, corrections):
     of the corrected version of original
     """
     if len(corrections['flaggedTokens']) == 0:
+        print('no suggestions')
         return original.replace('\n', '')
     misspelled = corrections['flaggedTokens']
     text = original.replace('\n', '')
@@ -29,7 +30,8 @@ def spell_check(text):
     """
     if len(text) < 3:
         return
-    url = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text=' + text
+    url = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text=' 
+    + text
     headers = {'Ocp-Apim-Subscription-Key': key, 'setLang': 'EN' }
     r = requests.get(url, headers=headers)
     if r.status_code == requests.codes.ok:
@@ -45,6 +47,7 @@ def misspell_text(line):
     """
     line = line.split(' ')
     for i in range(len(line)):
+        # only misspell words with 4 or more chars
         if len(line[i]) > 3:
             line[i] = line[i].replace(line[i][1], '', 1)
     return ' '.join(line)
@@ -54,18 +57,19 @@ def main():
         print(USAGE)
         return
     fname = sys.argv[1]
-    # out_fname = ''
-    # if '.' in fname:
-    #     out_fname = sys.argv[1].rsplit('.', 1)[0] + '_output.' + sys.argv[1].rsplit('.', 1)[1]
-    # else:
-    #     out_fname = fname + '_output'
     try:
+        full_text = ''
+        url = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text='
         with open(fname) as fileobj:
             for line in fileobj:
                 line = line.lstrip().rstrip()
-                line = misspell_text(line)
-                line = spell_check(line)
-                print(line)
+                full_text = full_text + ' ' + misspell_text(line)
+        # max request length that msft will accept is 2048 chars
+        if sys.getsizeof(full_text) <= 2048 - len(url):
+            full_text = spell_check(full_text)
+            print(full_text)
+        else:
+            print('over 2048 chars')
     except FileNotFoundError:
         print('file not found')
 
