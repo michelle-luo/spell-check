@@ -1,9 +1,12 @@
 import requests
 import time
 import sys
+import string
 from keys import key
 
 USAGE = 'usage: python3 test.py <test-data>'
+ENDPT = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text='
+MAXLEN = 1450 - len(ENDPT)
 
 def correct_text(original, corrections):
     """
@@ -30,15 +33,14 @@ def spell_check(text):
     """
     if len(text) < 3:
         return
-    url = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text=' 
-    + text
+    url = ENDPT + text
     headers = {'Ocp-Apim-Subscription-Key': key, 'setLang': 'EN' }
     r = requests.get(url, headers=headers)
     if r.status_code == requests.codes.ok:
         results = correct_text(text, r.json())
         return results
     else:
-        return r.text
+        return str(r.status_code) + r.text
 
 def misspell_text(line):
     """ 
@@ -52,6 +54,35 @@ def misspell_text(line):
             line[i] = line[i].replace(line[i][1], '', 1)
     return ' '.join(line)
 
+def has_digits(s):
+    return any(c.isdigit() for c in s)
+
+def split_into_lines(full_text):
+    line = ""
+    lines = []
+    i = 0
+    text_arr = full_text.split(' ')
+    for word in text_arr:
+        # line = line + word + " "
+        if len(line) + len(word + " ") >= MAXLEN:
+            lines.append(line)
+            line = ""
+            i += 1
+        line = line + word + " "
+    lines.append(line)
+    return lines
+
+def read_text(fileobj):
+    full_text = ""
+    for line in fileobj:
+        line = line.lstrip().rstrip()
+        line = line.strip(string.punctuation)
+        for word in line.split(' '):
+            if not has_digits(word):
+                word = misspell_text(word)
+            full_text = full_text + word + " "
+    return full_text
+
 def main():
     if len(sys.argv) != 2:
         print(USAGE)
@@ -59,17 +90,15 @@ def main():
     fname = sys.argv[1]
     try:
         full_text = ''
-        url = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text='
         with open(fname) as fileobj:
-            for line in fileobj:
-                line = line.lstrip().rstrip()
-                full_text = full_text + ' ' + misspell_text(line)
-        # max request length that msft will accept is 2048 chars
-        if sys.getsizeof(full_text) <= 2048 - len(url):
-            full_text = spell_check(full_text)
-            print(full_text)
-        else:
-            print('over 2048 chars')
+            full_text = read_text(fileobj)
+        text_arr = split_into_lines(full_text)
+        for line in text_arr:
+            if len(line) > MAXLEN:
+                print("over", str(MAXLEN), "chars")
+            else:
+                print(spell_check(line))
+                # print(str(len(line)), line)
     except FileNotFoundError:
         print('file not found')
 
