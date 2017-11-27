@@ -4,7 +4,7 @@ import sys
 import string
 from keys import key
 
-USAGE = 'usage: python3 test.py <test-data>'
+USAGE = 'usage: python3 test.py <test data> <index of letter to remove>'
 ENDPT = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text='
 MAXLEN = 1450 - len(ENDPT)
 
@@ -47,11 +47,16 @@ def misspell_text(line):
     systematically misspell each word in a line
     * first try: removing the second letter from each word
     """
+    try:
+        j = int(sys.argv[2])
+    except ValueError as exception:
+        print('index of letter to remove must be of type int')
+        sys.exit(1)
+        
     line = line.split(' ')
     for i in range(len(line)):
-        # only misspell words with 4 or more chars
-        if len(line[i]) > 3:
-            line[i] = line[i].replace(line[i][1], '', 1)
+        if len(line[i]) > j + 1:
+            line[i] = line[i].replace(line[i][j], '', 1)
     return ' '.join(line)
 
 def has_digits(s):
@@ -84,21 +89,24 @@ def read_text(fileobj):
     return full_text
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         print(USAGE)
-        return
+        sys.exit(0)
+    
     fname = sys.argv[1]
     try:
         full_text = ''
         with open(fname) as fileobj:
             full_text = read_text(fileobj)
         text_arr = split_into_lines(full_text)
+        i = 0
         for line in text_arr:
             if len(line) > MAXLEN:
                 print("over", str(MAXLEN), "chars")
             else:
-                print(spell_check(line))
-                # print(str(len(line)), line)
+                i += 1
+                print(line)
+                # print(spell_check(line))
     except FileNotFoundError:
         print('file not found')
 
