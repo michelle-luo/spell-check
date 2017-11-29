@@ -2,6 +2,7 @@ import requests
 import time
 import sys
 import string
+import re
 from keys import key
 
 USAGE = 'usage: python3 test.py <test data> <index of letter to remove>'
@@ -82,6 +83,7 @@ def read_text(fileobj):
     for line in fileobj:
         line = line.lstrip().rstrip()
         line = line.strip(string.punctuation)
+        line = re.sub('[^A-Za-z0-9 ]+', '', line)
         for word in line.split(' '):
             if not has_digits(word):
                 word = misspell_text(word)
@@ -96,6 +98,7 @@ def main():
     fname = sys.argv[1]
     try:
         full_text = ''
+        corrected_text = ''
         with open(fname) as fileobj:
             full_text = read_text(fileobj)
         text_arr = split_into_lines(full_text)
@@ -105,8 +108,8 @@ def main():
                 print("over", str(MAXLEN), "chars")
             else:
                 i += 1
-                print(line)
-                # print(spell_check(line))
+                corrected_text += spell_check(line)
+        print(corrected_text)
     except FileNotFoundError:
         print('file not found')
 
