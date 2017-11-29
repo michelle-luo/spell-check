@@ -98,18 +98,22 @@ def main():
     fname = sys.argv[1]
     try:
         full_text = ''
-        corrected_text = ''
+        text = ''
         with open(fname) as fileobj:
             full_text = read_text(fileobj)
         text_arr = split_into_lines(full_text)
         i = 0
+        orig_mode = True
         for line in text_arr:
             if len(line) > MAXLEN:
                 print("over", str(MAXLEN), "chars")
             else:
                 i += 1
-                corrected_text += spell_check(line)
-        print(corrected_text)
+                if orig_mode:
+                    text += line
+                else:
+                    text += spell_check(line)
+        print(text)
     except FileNotFoundError:
         print('file not found')
 
