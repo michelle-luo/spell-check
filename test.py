@@ -9,23 +9,23 @@ USAGE = 'usage: python3 test.py <test data> <index of letter to remove>'
 ENDPT = 'https://api.cognitive.microsoft.com/bing/v7.0/spellcheck?text='
 MAXLEN = 1450 - len(ENDPT)
 
-def correct_text(original, corrections):
+def correct_text(orig, corrections):
     """
-    given a json of corrections and the original line, returns a string
-    of the corrected version of original
+    given a json of corrections and the orig line, returns a string
+    of the corrected version of orig
     """
-    if len(corrections['flaggedTokens']) == 0:
+    if not corrections:
         print('no suggestions')
-        return original.replace('\n', '')
+        return orig.replace('\n', '')
+    
     misspelled = corrections['flaggedTokens']
-    text = original.replace('\n', '')
+    text = orig.replace('\n', '')
     text = text.split(' ')
     for m in misspelled:
         offset = m['offset']
-        # how many spaces in substring from 0 -> offset?
-        word_to_replace_i = original[0:offset].count(' ')
+        i = orig[0:offset].count(' ')   # num spaces in substr from 0 -> offset
         suggestion = m['suggestions'][0]['suggestion']
-        text[word_to_replace_i] = suggestion
+        text[i] = suggestion
     return ' '.join(text)
 
 def spell_check(text):
@@ -46,7 +46,6 @@ def spell_check(text):
 def misspell_text(line):
     """ 
     systematically misspell each word in a line
-    * first try: removing the second letter from each word
     """
     try:
         j = int(sys.argv[2])
@@ -64,12 +63,14 @@ def has_digits(s):
     return any(c.isdigit() for c in s)
 
 def split_into_lines(full_text):
+    """
+    splits into lines with length 1450 (largest possible size for msft)
+    """
     line = ""
     lines = []
     i = 0
     text_arr = full_text.split(' ')
     for word in text_arr:
-        # line = line + word + " "
         if len(line) + len(word + " ") >= MAXLEN:
             lines.append(line)
             line = ""
@@ -103,13 +104,13 @@ def main():
             full_text = read_text(fileobj)
         text_arr = split_into_lines(full_text)
         i = 0
-        orig_mode = True
+        test_mode = False
         for line in text_arr:
             if len(line) > MAXLEN:
                 print("over", str(MAXLEN), "chars")
             else:
                 i += 1
-                if orig_mode:
+                if test_mode:
                     text += line
                 else:
                     text += spell_check(line)
