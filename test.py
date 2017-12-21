@@ -1,8 +1,8 @@
 import requests
-import time
 import sys
 import string
 import re
+import os.path
 from keys import key
 
 USAGE = 'usage: python3 test.py <test data> <index of letter to remove>'
@@ -81,40 +81,51 @@ def split_into_lines(full_text):
 
 def read_text(fileobj):
     full_text = ""
+    fname_og, fext = os.path.splitext(sys.argv[1])
+    fname_og = os.path.basename(fname_og)
+    orig_text = ''
     for line in fileobj:
         line = line.lstrip().rstrip()
         line = line.strip(string.punctuation)
         line = re.sub('[^A-Za-z0-9 ]+', '', line)
+        orig_text = orig_text + line + ' '
         for word in line.split(' '):
             if not has_digits(word):
                 word = misspell_text(word)
             full_text = full_text + word + " "
+    orig_file = open(fname_og + '_orig' + fext, 'w+')
+    orig_file.write(orig_text)
+    orig_file.close()
     return full_text
 
 def main():
     if len(sys.argv) != 3:
         print(USAGE)
         sys.exit(0)
-    
     fname = sys.argv[1]
+    fname_og, fext = os.path.splitext(fname)
+    fname_og = os.path.basename(fname_og)
     try:
         full_text = ''
-        text = ''
+        original = ''
+        compressed = ''
+        corrected = ''        
         with open(fname) as fileobj:
             full_text = read_text(fileobj)
         text_arr = split_into_lines(full_text)
-        i = 0
-        test_mode = False
         for line in text_arr:
             if len(line) > MAXLEN:
                 print("over", str(MAXLEN), "chars")
             else:
-                i += 1
-                if test_mode:
-                    text += line
-                else:
-                    text += spell_check(line)
-        print(text)
+                compressed += line
+                corrected += spell_check(line)
+        comp_file = open(fname_og + '_compressed' + fext, 'w+')
+        comp_file.write(compressed)
+        comp_file.close()
+        corr_file = open(fname_og + '_corrected' + fext, 'w+')
+        corr_file.write(corrected)
+        corr_file.close()
+        
     except FileNotFoundError:
         print('file not found')
 
