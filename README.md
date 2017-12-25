@@ -1,6 +1,4 @@
 ### spell-check
-#### goal: removing letters from corpus to see if bing spell check api can spell check
-* 11.5: removing second letter from each word
-  - yield: 86% similarity
-
-(max size for line: 2048 chars)
+#### given a corpus, create original text file, a compressed text file, and a corrected text file (using Microsoft Azure Bing Spell Check)
+* usage: python3 <text corpus> <index of letter to remove>
+* to use with an API key: in same directory, create a "keys.py" and put: "keys = YOUR_KEY_HERE"
